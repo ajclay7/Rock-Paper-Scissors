@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Rock Paper Scissors</title>
 
-    <script src="app.js"></script>
-</head>
-<body>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-</body>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Font Awesome -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/b7eaf2b186.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="title">Rock Paper Scissors</h1>
+    </header>
+
+    <h2 class="score-info" id="scoreInfo">Welcome!</h2>
+
+    <div class="container-score">
+      <div class="player">
+        <p class="player-title">Player: <span class="player-score">0</span></p>
+        <p class="player-choice"><i class="fas fa-hand-rock"></i></p>
+      </div>
+      <div class="computer">
+        <p class="computer-title">
+          Computer: <span class="computer-score">0</span>
+        </p>
+        <p class="computer-choice"><i class="fas fa-hand-rock"></i></p>
+      </div>
+    </div>
+
+    <div class="container-field"></div>
+
+    <div class="container-choices">
+      <button class="btn btn--rock"><i class="far fa-hand-rock"></i></button>
+      <button class="btn btn--paper"><i class="far fa-hand-paper"></i></button>
+      <button class="btn btn--scissors">
+        <i class="far fa-hand-scissors"></i>
+      </button>
+    </div>
+  </body>
 </html>
