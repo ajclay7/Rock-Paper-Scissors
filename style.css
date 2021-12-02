@@ -52,49 +52,89 @@ uifaces.co
 */
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 html {
-  /* font-size: 10px; */
-  /* 10px / 16px = 0.625 = 62.5% */
-  /* Percentage of user's browser font-size setting */
-  font-size: 62.5%;
-  overflow-x: hidden;
-  /* scroll-behavior: smooth; */
+	/* font-size: 10px; */
+	/* 10px / 16px = 0.625 = 62.5% */
+	/* Percentage of user's browser font-size setting */
+	font-size: 62.5%;
+	overflow-x: hidden;
+	/* scroll-behavior: smooth; */
 }
 
 body {
-  background-color: #495057;
-  font-family: "Roboto", sans-serif;
-  line-height: 1;
-  font-weight: 400;
-  color: #f8f9fa;
+	background-color: #495057;
+	font-family: 'Roboto', sans-serif;
+	line-height: 1;
+	font-weight: 400;
+	color: #f8f9fa;
 
-  /* Only works if nothing is absolutly positioned in relation to body */
-  overflow-x: hidden;
+	/* Only works if nothing is absolutly positioned in relation to body */
+	overflow-x: hidden;
 
-  display: grid;
-  justify-content: center;
-  text-align: center;
+	display: grid;
+	justify-content: center;
+	text-align: center;
 }
 
 *:focus {
-  outline: none;
-  /* outline: 4px dotted #3bc9db; */
-  /* outline-offset: 8px; */
-  box-shadow: 0 0 0 0.8rem rgba(59, 200, 219, 0.5);
+	outline: none;
+	/* outline: 4px dotted #3bc9db; */
+	/* outline-offset: 8px; */
+	box-shadow: 0 0 0 0.8rem rgba(59, 200, 219, 0.5);
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 9.8rem;
+	margin-bottom: 3.2rem;
+}
+
+.title {
+	font-size: 5.2rem;
+}
+
+.score-info {
+	font-size: 3.6rem;
+	margin-bottom: 3.2rem;
 }
 
 .container-score {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  text-align: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	text-align: center;
+	margin-bottom: 3.2rem;
+}
+
+.player {
+	font-size: 3.6rem;
+}
+
+.player-title,
+.computer-title {
+	margin-bottom: 3.2rem;
+}
+
+.computer {
+	font-size: 3.6rem;
 }
 
 .container-choices {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
+	gap: 2.4rem;
+	padding: 2.4rem;
+	border: 2px solid #fff;
+}
+
+.btn {
+	font-size: 4.4rem;
+	padding: 1.6rem;
 }

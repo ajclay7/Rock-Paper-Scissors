@@ -1,78 +1,141 @@
-const computerPlay = () => {
-  let options = ["Rock", "Paper", "Scissors"];
-  pick = Math.floor(Math.random() * 3);
+let playerScore = 0;
+let computerScore = 0;
+let playing = true;
 
-  let computerPick = options[pick];
+document.addEventListener('DOMContentLoaded', function (event) {
+	const computerPlay = () => {
+		let options = ['Rock', 'Paper', 'Scissors'];
+		pick = Math.floor(Math.random() * 3);
 
-  return computerPick;
-};
+		let computerPick = options[pick];
 
-const capitalize = (str) => {
-  return str[0].toUpperCase() + str.slice(1);
-};
+		return computerPick;
+	};
 
-const playRound = (playerSelection, computerSelection) => {
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
+	const capitalize = (str) => {
+		return str[0].toUpperCase() + str.slice(1);
+	};
 
-  if (playerSelection === computerSelection) {
-    return "tie";
-  } else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
-  ) {
-    return `player`;
-  } else if (
-    (playerSelection === "rock" && computerSelection === "paper") ||
-    (playerSelection === "paper" && computerSelection === "scissors") ||
-    (playerSelection === "scissors" && computerSelection === "rock")
-  ) {
-    return `computer`;
-  }
-};
+	const playRound = (playerSelection, computerSelection) => {
+		playerSelection = playerSelection.toLowerCase();
+		computerSelection = computerSelection.toLowerCase();
 
-const game = () => {
-  let playerScore = 0;
-  let computerScore = 0;
+		if (playerSelection === computerSelection) {
+			return 'tie';
+		} else if (
+			(playerSelection === 'rock' && computerSelection === 'scissors') ||
+			(playerSelection === 'paper' && computerSelection === 'rock') ||
+			(playerSelection === 'scissors' && computerSelection === 'paper')
+		) {
+			return `player`;
+		} else if (
+			(playerSelection === 'rock' && computerSelection === 'paper') ||
+			(playerSelection === 'paper' && computerSelection === 'scissors') ||
+			(playerSelection === 'scissors' && computerSelection === 'rock')
+		) {
+			return `computer`;
+		}
+	};
 
-  while (playerScore < 5 && computerScore < 5) {
-    let playerSelection = prompt("Choose your weapon");
-    let computerSelection = computerPlay();
+	const updateScore = (playerSelection, computerSelection, winner) => {
+		let scoreInfo = document.querySelector('#scoreInfo');
+		let playerScoreDisplay = document.querySelector('.player-score');
+		let computerScoreDisplay = document.querySelector('.computer-score');
+		let playerIcon = document.querySelector('.player-icon');
+		let computerIcon = document.querySelector('.computer-icon');
 
-    winner = playRound(playerSelection, computerSelection);
+		playerIcon.innerHTML = `<i class="fas fa-hand-${playerSelection.toLowerCase()}"></i>`;
+		computerIcon.innerHTML = `<i class="fas fa-hand-${computerSelection.toLowerCase()}"></i>`;
 
-    if (winner === "player") {
-      playerScore++;
-      console.log(
-        `You Win! ${capitalize(playerSelection)} beats ${capitalize(
-          computerSelection
-        )}`
-      );
-    } else if (winner === "computer") {
-      computerScore++;
-      console.log(
-        `You Lose! ${capitalize(computerSelection)} beats ${capitalize(
-          playerSelection
-        )}`
-      );
-    } else if (winner === "tie") {
-      console.log("It's a tie");
-    } else {
-      console.log("Something went wrong here :( ");
-    }
+		if (winner === 'player') {
+			++playerScore;
+			console.log(
+				`You Win! ${capitalize(playerSelection)} beats ${capitalize(
+					computerSelection
+				)}`
+			);
 
-    console.log(`Score (Player: ${playerScore}) (Computer: ${computerScore})`);
-  }
+			scoreInfo.innerHTML = `<span>You Win! ${capitalize(
+				playerSelection
+			)} beats ${capitalize(computerSelection)}</span>`;
 
-  if (playerScore === 5) {
-    console.log("Winnner Winner Chicken Dinner!");
-  } else if (computerScore === 5) {
-    console.log("You've lost! We are all doomed!");
-  }
-};
+			playerScoreDisplay.innerHTML = `${playerScore}`;
+		} else if (winner === 'computer') {
+			++computerScore;
+			console.log(
+				`You Lose! ${capitalize(computerSelection)} beats ${capitalize(
+					playerSelection
+				)}`
+			);
 
-game();
+			scoreInfo.innerHTML = `<span>You Lose! ${capitalize(
+				computerSelection
+			)} beats ${capitalize(playerSelection)}</span>`;
+
+			computerScoreDisplay.innerHTML = `${computerScore}`;
+		} else if (winner === 'tie') {
+			console.log("It's a tie");
+			scoreInfo.innerHTML = `It's a tie`;
+		} else {
+			console.log('Something went wrong here :( ');
+		}
+
+		console.log(`Score (Player: ${playerScore}) (Computer: ${computerScore})`);
+
+		if (playerScore === 5) {
+			console.log('Winnner Winner Chicken Dinner!');
+			scoreInfo.innerHTML = `Winnner Winner Chicken Dinner!`;
+			playing = false;
+		} else if (computerScore === 5) {
+			console.log("You've lost! We are all doomed!");
+			scoreInfo.innerHTML = `You've lost! We are all doomed!"`;
+			playing = false;
+		}
+	};
+
+	const game = (playerSelection) => {
+		let computerSelection = computerPlay();
+
+		winner = playRound(playerSelection, computerSelection);
+		updateScore(playerSelection, computerSelection, winner);
+	};
+
+	const reset = () => {
+		playing = true;
+		playerScore = 0;
+		computerScore = 0;
+
+		let scoreInfo = document.querySelector('#scoreInfo');
+		let playerScoreDisplay = document.querySelector('.player-score');
+		let computerScoreDisplay = document.querySelector('.computer-score');
+		let playerIcon = document.querySelector('.player-icon');
+		let computerIcon = document.querySelector('.computer-icon');
+
+		scoreInfo.innerHTML = `Welcome!`;
+		playerScoreDisplay.innerHTML = `${playerScore}`;
+		computerScoreDisplay.innerHTML = `${computerScore}`;
+		playerIcon.innerHTML = `<i class="fas fa-hand-rock"></i>`;
+		computerIcon.innerHTML = `<i class="fas fa-hand-rock"></i>`;
+	};
+
+	const buttons = document.querySelectorAll('.btn');
+	console.log(buttons);
+
+	buttons.forEach((button) => {
+		button.addEventListener('click', (e) => {
+			let selection = e.currentTarget.getAttribute('id');
+
+			console.log(selection);
+			if (selection === 'reset') {
+				reset();
+			} else if (playing && selection != 'reset') {
+				game(selection);
+			}
+		});
+	});
+});
+
+// game();
 
 // const playerSelection = "rock";
 // const computerSelection = computerPlay();
