@@ -6,6 +6,8 @@ Simple implementation of Rock Paper Scissors game from The Odin Project [curricu
 
 This is my first **HTML/CSS/JS** project. **Live version** of the game is [here](https://ajclay7.github.io/Rock-Paper-Scissors/).
 
+![](rps.png)
+
 ### First stage | Game in the browser console
 
 **The benefits I got from this stage:**
